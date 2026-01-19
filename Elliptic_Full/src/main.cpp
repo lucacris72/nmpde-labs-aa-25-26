@@ -19,7 +19,7 @@ public:
   value(const Point<dim> &p,
         const unsigned int /*component*/ = 0) const override
   {
-    return std::sin(2.0 * M_PI * p[0]) * std::sin(4.0 * M_PI * p[1]);
+    return std::sin(M_PI * p[0]) + std::sin(M_PI * p[1]);
   }
 
   // Gradient evaluation.
@@ -29,10 +29,8 @@ public:
   {
     Tensor<1, dim> result;
 
-    result[0] =
-      2.0 * M_PI * std::cos(2.0 * M_PI * p[0]) * std::sin(4.0 * M_PI * p[1]);
-    result[1] =
-      4.0 * M_PI * std::sin(2.0 * M_PI * p[0]) * std::cos(4.0 * M_PI * p[1]);
+    result[0] = M_PI * std::cos(M_PI * p[0]);
+    result[1] = M_PI * std::cos(M_PI * p[1]);
 
     return result;
   }
@@ -53,15 +51,18 @@ main(int /*argc*/, char * /*argv*/[])
   const unsigned int r              = 1;
 
   const auto mu = [](const Point<dim> & /*p*/) { return 1.0; }; // Diffusion coefficient
-  const auto b  = [](const Point<dim> & p) { 
+  const auto b  = [](const Point<dim> & /*p*/) {
     Tensor<1, dim> result;
-    result[0] = 0.0 * p[0];
-    result[1] = 0.0 * p[1];
+    result[0] = 1.0;
+    result[1] = 1.0;
     return result;
    }; // Advection coefficient
-  const auto sigma = [](const Point<dim> & p) { return 0.0 * p[0]; }; // Reaction coefficient
-  const auto f  = [](const Point<dim>  &/*p*/) { return -5.0; }; // Forcing term
-  const auto h  = [](const Point<dim> &p) { return p[1]; }; // Neumann boundary condition
+  const auto sigma = [](const Point<dim> & /*p*/) { return 1.0; }; // Reaction coefficient
+  const auto f  = [](const Point<dim>  &p) {
+    return (M_PI * M_PI + 1.0) * (std::sin(M_PI * p[0]) + std::sin(M_PI * p[1])) + 
+            M_PI * (std::cos(M_PI * p[0]) + std::cos(M_PI * p[1]));
+  }; // Forcing term
+  const auto h  = [](const Point<dim> &/*p*/) { return -M_PI; }; // Neumann boundary condition
 
   for (const auto &N_el : N_el_values)
   {
