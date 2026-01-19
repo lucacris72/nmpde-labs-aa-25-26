@@ -150,6 +150,8 @@ Full::assemble()
             }
         }
 
+      // Note that if I have homogeneus Neumann conditions, I do not need to
+      // assemble the boundary integral.  
       // If the cell is adjacent to the boundary...
       if (cell->at_boundary())
         {
