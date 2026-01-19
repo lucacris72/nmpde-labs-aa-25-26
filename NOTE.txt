@@ -1,0 +1,7 @@
+Inside VScode run "apptainer shell amsc_mk_2025.sif" to get the envirorment setted up
+Then type :
+source /u/sw/etc/bash.bashrc
+to load the modules
+
+then load 
+module load gcc-glibc dealii
