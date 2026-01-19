@@ -2,9 +2,9 @@
 
 #include <deal.II/base/convergence_table.h>
 
-#include "Full.hpp"
+#include "Elliptic.hpp"
 
-static constexpr unsigned int dim = Full::dim;
+static constexpr unsigned int dim = Elliptic::dim;
 
 // Exact solution. Both value and gradient are known.
 class ExactSolution : public Function<dim>
@@ -69,7 +69,7 @@ main(int /*argc*/, char * /*argv*/[])
     const std::string mesh_file_name =
       "../mesh/mesh-square-" + std::to_string(N_el) + ".msh";
 
-    Full problem(mesh_file_name, r, mu, b, sigma, f, h);
+    Elliptic problem(mesh_file_name, r, mu, b, sigma, f, h);
 
     problem.setup();
     problem.assemble();

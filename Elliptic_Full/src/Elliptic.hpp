@@ -35,7 +35,7 @@ using namespace dealii;
 /**
  * Class managing the differential problem.
  */
-class Full
+class Elliptic
 {
 public:
   // Physical dimension (1D, 2D, 3D)
@@ -62,7 +62,7 @@ public:
   };
 
   // Constructor.
-  Full(const std::string                               &mesh_file_name_,
+  Elliptic(const std::string                               &mesh_file_name_,
             const unsigned int                              &r_,
             const std::function<double(const Point<dim> &)> &mu_,
             const std::function<Tensor<1, dim>(const Point<dim> &)> &b_,

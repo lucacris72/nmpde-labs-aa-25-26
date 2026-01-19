@@ -1,7 +1,7 @@
-#include "Full.hpp"
+#include "Elliptic.hpp"
 
 void
-Full::setup()
+Elliptic::setup()
 {
   std::cout << "===============================================" << std::endl;
 
@@ -73,7 +73,7 @@ Full::setup()
 }
 
 void
-Full::assemble()
+Elliptic::assemble()
 {
   std::cout << "===============================================" << std::endl;
 
@@ -211,7 +211,7 @@ Full::assemble()
 }
 
 void
-Full::solve()
+Elliptic::solve()
 {
   std::cout << "===============================================" << std::endl;
 
@@ -228,7 +228,7 @@ Full::solve()
 }
 
 void
-Full::output() const
+Elliptic::output() const
 {
   std::cout << "===============================================" << std::endl;
 
@@ -251,7 +251,7 @@ Full::output() const
 }
 
 double
-Full::compute_error(const VectorTools::NormType &norm_type,
+Elliptic::compute_error(const VectorTools::NormType &norm_type,
                     const Function<dim> &exact_solution) const
 {
   const QGaussSimplex<dim> quadrature_error(r + 2);

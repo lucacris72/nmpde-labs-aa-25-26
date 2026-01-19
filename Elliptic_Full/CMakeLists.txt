@@ -3,5 +3,5 @@ project(Elliptic_Full LANGUAGES CXX C)
 
 include(../common/cmake-common.cmake)
 
-add_executable(Elliptic_Full src/main.cpp src/Full.cpp)
+add_executable(Elliptic_Full src/main.cpp src/Elliptic.hpp src/Elliptic.cpp)
 deal_ii_setup_target(Elliptic_Full)
